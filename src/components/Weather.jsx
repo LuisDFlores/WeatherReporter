@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
-const API_KEY = '2ede46c03a30c5be4424aa089c5f844e';
+const key = process.env.REACT_APP_SECRET
 
 const WeatherApp = () => {
+
     const [city, setCity] = useState('');
     const [weatherData, setWeatherData] = useState(null);
 
@@ -21,7 +22,7 @@ const WeatherApp = () => {
     const fetchWeatherData = async () => {
         try {
             const response = await axios.get(
-                `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}`
+                `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${key}`
             );
             setWeatherData(response.data);
         } catch (error) {
